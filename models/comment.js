@@ -22,6 +22,14 @@ Comment.init(
             type: DataTypes.DATE,
             allowNull: false
         },
+        blogPost_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model:'blog_post',
+                key: 'id',
+            }
+        }
     },
     {
         sequelize,
@@ -32,4 +40,4 @@ Comment.init(
     },
 );
 
-module.exports = Comment;
+module.exports = Comment
