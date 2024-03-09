@@ -19,7 +19,7 @@ const hbs = exphbs.create({ helpers });
 
 // Create session middleware parameters for the express-session package
 const sess = {
-    secret: 'secret',
+    secret: process.env.EXP_SESS_SEC,
     cookie: {
         maxAge: 300000,
         httpOnly: true,
