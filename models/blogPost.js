@@ -45,4 +45,6 @@ BlogPost.init(
         underscored: true,
         modelName: 'blog_post'
     }
-)
+);
+
+module.exports = BlogPost;
