@@ -1,0 +1,18 @@
+<div> 
+    <h2>Your Blog Posts:</h2>
+    {{#if blog_posts.length}}
+        <ul>
+            {{#each blog_posts}}
+                <li>
+                    <h3>{{this.title}}</h3>
+                    <p>{{this.body_content}}</p>
+                    <p>Created on: {{this.date_created}}</p>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>No blog posts found</p>
+    {{/if}}
+</div>
+
+<button>Create New Post</button>
