@@ -36,7 +36,6 @@ router.post('/login', async (req,res) => {
         req.session.save(() => {
             req.session.user_id = userData.id;
             req.session.logged_in = true;
-
             res.json({ user: userData, message: 'You are now logged in!'})
         });
     } catch (err) {
@@ -48,7 +47,7 @@ router.post('/login', async (req,res) => {
 //When hitting the /logout endpoint, log out the user
 router.post('/logout', (req, res) => {
     if (req.session.logged_in) {
-        res.session.destroy(() => {
+        req.session.destroy(() => {
             res.status(204).end();
         });
     } else {
