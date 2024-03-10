@@ -1,13 +1,26 @@
 const router = require('express').Router();
 const withAuth = require('../../utils/auth.js')
-const { User } = require('../../models/');
+const { User, BlogPost } = require('../../models/');
 
-//Create a user
+// Create a user
+router.post('/signup', async (req,res) => {
+    try {
+        User.create(req.body)
+        .then((newUser) => {
+            res.json(newUser);
+        })
+        .catch((err) => {
+            res.json(err)
+        })
+    } catch (err) {
+        res.status(400).json(err);
+    }
+})
 
 //When hitting the /login endpoint, 
 router.post('/login', async (req,res) => {
     try {
-        const userData = await User.findOne({ where: { username: req.body.username}});
+        const userData = await User.findOne({ where: { name: req.body.name}});
         if (!userData) {
             res.status(400).json({message: 'Incorrect username or password, please try again'});
             return;
@@ -42,5 +55,19 @@ router.post('/logout', (req, res) => {
         res.status(404).end();
     }
 });
+
+// View all users (For Testing purposes)
+router.get('/', async (req, res) => {
+    try{
+        const usersData = await User.findAll({
+            include: [
+                {model:BlogPost},
+            ],
+        });
+        res.json(usersData);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+})
 
 module.exports = router;
