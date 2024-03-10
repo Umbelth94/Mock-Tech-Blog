@@ -2,7 +2,6 @@ const router = require('express').Router();
 const { User, Comment, BlogPost } = require ('../models');
 
 //Currently shows all blog posts (sends through the data)
-//Need to make this actually populate the home page
 router.get('/', async (req, res) => {
     try{
         const dbBlogData = await BlogPost.findAll({
@@ -18,6 +17,22 @@ router.get('/', async (req, res) => {
     }
     catch (err) {
         res.status(500).json(err);
+    }
+})
+
+router.get('/login', async (req,res) => {
+    try {
+        res.render('login');
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
+
+router.get('/signup', async (req, res) => {
+    try {
+        res.render('signup');
+    } catch (err) {
+        res.status(500).json(err)
     }
 })
 
