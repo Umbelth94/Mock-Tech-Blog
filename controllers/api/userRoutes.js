@@ -1,19 +1,22 @@
 const router = require('express').Router();
+const withAuth = require('../../utils/auth.js')
 const { User } = require('../../models/');
+
+//Create a user
 
 //When hitting the /login endpoint, 
 router.post('/login', async (req,res) => {
     try {
-        const userData = await User.findOne({ where: { email: req.body.email}});
+        const userData = await User.findOne({ where: { username: req.body.username}});
         if (!userData) {
-            res.status(400).json({message: 'Incorrect email or password, please try again'});
+            res.status(400).json({message: 'Incorrect username or password, please try again'});
             return;
         }
 
         const validPassword = await userData.checkPassword(req.body.password);
 
         if (!validPassword) {
-            res.status(400).json({message: 'Incorrect email or password, please try again'});
+            res.status(400).json({message: 'Incorrect username or password, please try again'});
         }
 
         //S
@@ -29,7 +32,7 @@ router.post('/login', async (req,res) => {
 
     });
 
-//When hitting the logout endpoint, log out the user
+//When hitting the /logout endpoint, log out the user
 router.post('/logout', (req, res) => {
     if (req.session.logged_in) {
         res.session.destroy(() => {
