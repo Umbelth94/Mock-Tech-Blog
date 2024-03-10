@@ -5,13 +5,16 @@ const { User, Comment, BlogPost } = require ('../models');
 //Need to make this actually populate the home page
 router.get('/', async (req, res) => {
     try{
-        const Blogdata = await User.findAll({
+        const dbBlogData = await BlogPost.findAll({
             include: [
-                {model: BlogPost,},
+                {model: User,
+                attributes:['name']},
             ],
-        }
-        )
-        res.json(Blogdata);
+        });
+
+        const blogPosts = dbBlogData.map((blogs) =>
+        blogs.get({plain: true}))
+        res.render('home', {blogPosts})
     }
     catch (err) {
         res.status(500).json(err);
