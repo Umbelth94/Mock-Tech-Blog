@@ -1,8 +1,10 @@
-<section id="blogpost-card">
-    <a href="/blogpost/{{id}}">
-        <header>{{title}}</header>
+<section class="card">
+    <a href="/blogpost/{{id}}" class="link-underline-light">
+       <div class="d-flex">
+            <header>{{title}}</header>
+            <p>Posted by {{user.name}}</p>
+        </div>
         <p>{{body_content}}</p>
         <p>{{date_created}}</p>
-        <p>{{user.name}}</p>
     </a>
 </section>

@@ -1,0 +1,19 @@
+.card{
+    border: 1px solid black;
+    background-color:rgb(122, 145, 122);
+    margin:1rem;
+}
+
+/* .card-header{
+    background-color:black;
+} */
+
+a {
+    text-decoration: none;
+    color:black;
+}
+
+a:hover {
+    text-decoration:none;
+    color: black;
+}
