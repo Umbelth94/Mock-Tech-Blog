@@ -2,15 +2,15 @@
     <h1>Welcome, {{name}}</h1>
     <h2>Your Blog Posts:</h2>
     {{#if blog_posts.length}}
-        <ul>
-            {{#each blog_posts}}
-                <li>
+        {{#each blog_posts}}
+            <section class="card">
+                <a href="blogpost/{{id}}" class="link-underline-light">
                     <h3>{{this.title}}</h3>
                     <p>{{this.body_content}}</p>
                     <p>Created on: {{this.date_created}}</p>
-                </li>
-            {{/each}}
-        </ul>
+                </a> <!-- Move this closing tag inside the section -->
+            </section>
+        {{/each}}
     {{else}}
         <p>No blog posts found</p>
     {{/if}}

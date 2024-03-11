@@ -4,6 +4,10 @@
     margin:1rem;
 }
 
+section .card{
+    margin:1rem;
+}
+
 .main-header{
     background-color:rgb(143, 84, 11);
     padding:20px;
