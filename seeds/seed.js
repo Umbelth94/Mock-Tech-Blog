@@ -11,19 +11,24 @@ const seedDatabase = async () => {
         password: 'password123'
     });
 
+    const user3 = await User.create({
+        name:'Anthony',
+        password:'Irrelevant90'
+    })
+
     // Create blog posts under the user
     const blogPost1 = await BlogPost.create({
-        title: 'First Blog Post',
-        body_content: 'This is the content of the first blog post.',
+        title: 'How to make an omellete',
+        body_content: 'Break a few eggs',
         date_created: new Date(),
         author_id: user.id
     });
 
     const blogPost2 = await BlogPost.create({
-        title: 'Second Blog Post',
-        body_content: 'This is the content of the second blog post.',
+        title: 'Wish You Were Here',
+        body_content: 'This is a Pink Floyd song that is pretty good',
         date_created: new Date(),
-        author_id: user.id
+        author_id: user3.id
     });
 
     const blogPost3 = await BlogPost.create({
@@ -35,7 +40,7 @@ const seedDatabase = async () => {
 
     // Create another user for comments
     const anotherUser = await User.create({
-        name: 'Another User',
+        name: 'AngryCommentor',
         password: 'password456'
     });
 
@@ -44,14 +49,14 @@ const seedDatabase = async () => {
         author_id: anotherUser.id,
         blogPost_id: blogPost1.id, // Assuming blogPost1 is the target blog post
         date_created: new Date(),
-        content: 'This is the first comment for the first blog post.'
+        content: 'I got confused and broke an omellete to make eggs'
     });
 
     const comment2 = await Comment.create({
         author_id: anotherUser.id,
         blogPost_id: blogPost1.id, // Assuming blogPost1 is the target blog post
         date_created: new Date(),
-        content: 'This is the second comment for the first blog post.'
+        content: 'I cant believe you would do this'
     });
 
     console.log('Seed data inserted successfully.');
